@@ -18,14 +18,15 @@ variable "default_sg-info" {
 variable "default_route_table_id" {}
 #variable "rt-route-cidr_block" {}
 variable "default-rt-name" {}
-variable "default_rt-info" {
-    type = map(object({
-        #default_route_table_id = string
-        rt-route-cidr_block = string
-       # igw-id = string
-        #Name = string
-    }))
-}
+variable "rt-route-cidr_block" {}
+# variable "default_rt-info" {
+#     type = map(object({
+#         #default_route_table_id = string
+#         rt-route-cidr_block = string
+#        # igw-id = string
+#         #Name = string
+#     }))
+# }
 variable "igw_id" {}
 # variable "route_pub-info" {
 #     type = map(object({
@@ -39,9 +40,10 @@ variable "igw_id" {}
 #variable "igw-id" {}
 
 #variable "igw_id" {}
-variable "igw-info" {
-    type = map(object({
-       # vpc_id = string
-        Name = string
-    }))
-}
+# variable "igw-info" {
+#     type = map(object({
+#        # vpc_id = string
+#         Name = string
+#     }))
+# }
+variable "igw-name" {}

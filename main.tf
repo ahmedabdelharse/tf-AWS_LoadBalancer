@@ -16,9 +16,10 @@ module "NETWORKING" {
     default_sg-info = var.default_sg-info
     default_route_table_id = module.VPC.vpc-out.default_route_table_id
     default-rt-name = var.default-rt-name
-    default_rt-info = var.default_rt-info
-    igw_id = module.NETWORKING.igw-out
+    rt-route-cidr_block = var.rt-route-cidr_block
+    igw_id = module.NETWORKING.igw-out.id
     # route-route_table_id = var.route-route_table_id
     # route-destination_cidr_block = var.route-destination_cidr_block
-    igw-info = var.igw-info
+    #igw-info = var.igw-info
+    igw-name = var.igw-name
 }
