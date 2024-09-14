@@ -25,7 +25,7 @@ resource "aws_default_route_table" "default-routetable" {
   #for_each = var.default_rt-info
   route {
     cidr_block = var.rt-route-cidr_block
-    gateway_id = var.igw_id
+    gateway_id = aws_internet_gateway.igw.id
   }
   tags = {
     Name = var.default-rt-name
@@ -46,4 +46,15 @@ resource "aws_internet_gateway" "igw" {
   tags = {
   Name = var.igw-name
   }
+}
+
+resource "aws_nat_gateway" "nat" {
+  #-> allocation_id = aws_eip.example.id
+  count    = length(var.nat-subnet_info)
+  #for_each = toset(var.nat-subnet_info)
+  subnet_id = var.nat-subnet_info[count.index]
+  # tags = {
+  # Name = each.value.Name
+  # }
+  depends_on = [aws_internet_gateway.igw]
 }

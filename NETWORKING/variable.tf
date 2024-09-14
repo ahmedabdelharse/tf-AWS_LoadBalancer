@@ -27,7 +27,7 @@ variable "rt-route-cidr_block" {}
 #         #Name = string
 #     }))
 # }
-variable "igw_id" {}
+#variable "igw_id" {}
 # variable "route_pub-info" {
 #     type = map(object({
 #         route_table_id = string
@@ -47,3 +47,7 @@ variable "igw_id" {}
 #     }))
 # }
 variable "igw-name" {}
+variable "nat-subnet_info" {
+    description = "List of private subnet IDs."
+    type = list(string)
+}

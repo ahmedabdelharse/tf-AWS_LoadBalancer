@@ -1,5 +1,5 @@
 variable "region" {}
-variable "availability_zone" {}
+#variable "availability_zone" {}
 variable "instance_type" {}
 #variable "vpc-info" {}
 variable "vpc-cidr_block" {}
@@ -18,3 +18,4 @@ variable "rt-route-cidr_block" {}
 
 #variable "igw-info" {}
 variable "igw-name" {}
+#variable "nat-subnet_info" {}
