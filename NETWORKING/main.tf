@@ -50,6 +50,7 @@ resource "aws_internet_gateway" "igw" {
 
 resource "aws_nat_gateway" "nat" {
   #-> allocation_id = aws_eip.example.id
+  allocation_id = aws_eip.eip.id
   count    = length(var.nat-subnet_info)
   #for_each = toset(var.nat-subnet_info)
   subnet_id = var.nat-subnet_info[count.index]
@@ -57,4 +58,8 @@ resource "aws_nat_gateway" "nat" {
   # Name = each.value.Name
   # }
   depends_on = [aws_internet_gateway.igw]
+}
+resource "aws_eip" "eip" {
+    #domain = "vpc"
+    depends_on = [aws_internet_gateway.igw]
 }

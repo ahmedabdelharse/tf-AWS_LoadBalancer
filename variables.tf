@@ -19,3 +19,16 @@ variable "rt-route-cidr_block" {}
 #variable "igw-info" {}
 variable "igw-name" {}
 #variable "nat-subnet_info" {}
+
+# -> EC2
+variable "data-most_recent" {}
+variable "data-owners" {}
+variable "data-filter_name" {}
+variable "data-filter_value" {}
+#variable "instance_info" {}
+variable "private-instance-associate_public_ip_address"{}
+variable "public-instance-associate_public_ip_address"{}
+
+variable "instance-sg"{}
+variable "instance-name"{}
+
