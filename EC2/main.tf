@@ -15,14 +15,14 @@ data "aws_ami" "ami" {
 }
 
 resource "aws_instance" "ec2" {
-  ami                         = data.aws_ami.ami
+  ami                         = data.aws_ami.ami.id
   # for_each = var.isntance-info
   count    = length(var.instance-subnet_ids)
   subnet_id                   = var.instance-subnet_ids[count.index]
   instance_type               = var.instance-type
   ##key_name                   = aws_key_pair.ssh-key.key_name
   #availability_zone           = each.value.instance-a_z
-  security_groups             = var.instance-sg
+  security_groups             = [var.instance-sg]
   associate_public_ip_address = var.instance-associate_public_ip_address
   tags = {
     Name = var.instance-name

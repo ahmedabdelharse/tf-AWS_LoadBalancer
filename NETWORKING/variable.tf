@@ -1,19 +1,44 @@
 variable "vpc_id" {}
 variable "default-sg-name" {}
-variable "default_sg-info" {
-    type = map(object({
-        #vpc-id = string
-        ingress-from_port = string
-        ingress-protocol = string
-        ingress-to_port = string
-        ingress-cidr_block = string
-        egress-from_port = string
-        egress-protocol = string
-        egress-to_port = string
-        egress-cidr_block = string
-        #Name = string
-    }))
-}
+# variable "default_sg-info" {
+#     type = map(object({
+#         #vpc-id = string
+#         ingress-from_port = string
+#         ingress-protocol = string
+#         ingress-to_port = string
+#         ingress-cidr_block = string
+#         egress-from_port = string
+#         egress-protocol = string
+#         egress-to_port = string
+#         egress-cidr_block = string
+#         #Name = string
+#     }))
+# }
+# variable "default_sg-ingress-info" {
+#   type = map(object({
+#         ingress-from_port = string
+#         ingress-protocol = string
+#         ingress-to_port = string
+#         ingress-cidr_block = string
+#   }))
+# }
+# variable "default_sg-egress-info" {
+#   type = map(object({
+#         egress-from_port = string
+#         egress-protocol = string
+#         egress-to_port = string
+#         egress-cidr_block = string
+#   }))
+# }
+variable "ingress-from_port" {}
+variable "ingress-protocol" {}
+variable "ingress-to_port" {}
+variable "ingress-cidr_block" {}
+variable "egress-from_port" {}
+variable "egress-protocol" {}
+variable "egress-to_port" {}
+variable "egress-cidr_block" {}
+
 #variable "vpc-default_route_table_id" {}
 variable "default_route_table_id" {}
 #variable "rt-route-cidr_block" {}
@@ -47,7 +72,11 @@ variable "rt-route-cidr_block" {}
 #     }))
 # }
 variable "igw-name" {}
-variable "nat-subnet_info" {
-    description = "List of private subnet IDs."
+# variable "nat-subnet_info" {
+#     description = "List of private subnet IDs."
+#     type = list(string)
+# }
+variable "nat-subnet_ids" {
+    #description = "List of NAT subnet IDs."
     type = list(string)
 }

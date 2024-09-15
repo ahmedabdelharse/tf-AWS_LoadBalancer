@@ -4,18 +4,30 @@ resource "aws_default_security_group" "default-sg" {
     tags = {
     Name = var.default-sg-name
     }
-    for_each = var.default_sg-info
+    # for_each = var.default_sg-info
+    # ingress {
+    # from_port   = each.value.ingress-from_port
+    # protocol    = each.value.ingress-protocol
+    # to_port     = each.value.ingress-to_port
+    # cidr_blocks = [each.value.ingress-cidr_block]
+    # }
+    # egress {
+    # from_port   = each.value.egress-from_port
+    # protocol    = each.value.egress-protocol
+    # to_port     = each.value.egress-to_port
+    # cidr_blocks = [each.value.egress-cidr_block]
+    # }\
     ingress {
-    from_port   = each.value.ingress-from_port
-    protocol    = each.value.ingress-protocol
-    to_port     = each.value.ingress-to_port
-    cidr_blocks = [each.value.ingress-cidr_block]
+    from_port   = var.ingress-from_port #need to test list [var]
+    protocol    = var.ingress-protocol
+    to_port     = var.ingress-to_port
+    cidr_blocks = [var.ingress-cidr_block]
     }
     egress {
-    from_port   = each.value.egress-from_port
-    protocol    = each.value.egress-protocol
-    to_port     = each.value.egress-to_port
-    cidr_blocks = [each.value.egress-cidr_block]
+    from_port   = var.egress-from_port
+    protocol    = var.egress-protocol
+    to_port     = var.egress-to_port
+    cidr_blocks = [var.egress-cidr_block]
     }
 }
 
@@ -49,17 +61,24 @@ resource "aws_internet_gateway" "igw" {
 }
 
 resource "aws_nat_gateway" "nat" {
+  # count = 2
+  # subnet_id = element([var.nat-subnet_ids], count.index)
   #-> allocation_id = aws_eip.example.id
-  allocation_id = aws_eip.eip.id
-  count    = length(var.nat-subnet_info)
+  #allocation_id = aws_eip.eip[count.index].id
+  allocation_id = aws_eip.eip[count.index].id
+  #count    = length(var.nat-subnet_info)
   #for_each = toset(var.nat-subnet_info)
-  subnet_id = var.nat-subnet_info[count.index]
-  # tags = {
+  #subnet_id = var.nat-subnet_info[count.index]
+  #secondary_private_ip_addresses = [  ]
+  #for_each = toset(var.nat-subnet_ids)
+  count = length(var.nat-subnet_ids)
+  subnet_id = var.nat-subnet_ids[count.index]
   # Name = each.value.Name
   # }
-  depends_on = [aws_internet_gateway.igw]
+  depends_on = [aws_eip.eip]
 }
 resource "aws_eip" "eip" {
     #domain = "vpc"
+    count = 2
     depends_on = [aws_internet_gateway.igw]
 }

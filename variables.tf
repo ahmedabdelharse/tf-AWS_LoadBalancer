@@ -7,7 +7,18 @@ variable "vpc-name" {}
 variable "subnet-info" {}
 #networking
 variable "default-sg-name" {}
-variable "default_sg-info" {}
+#variable "default_sg-info" {}
+#variable "default_sg-ingress-info" {}
+#variable "default_sg-egress-info" {}
+variable "ingress-from_port" {}
+variable "ingress-protocol" {}
+variable "ingress-to_port" {}
+variable "ingress-cidr_block" {}
+variable "egress-from_port" {}
+variable "egress-protocol" {}
+variable "egress-to_port" {}
+variable "egress-cidr_block" {}
+
 
 variable "default-rt-name" {}
 #variable "default_rt-info" {}
@@ -21,14 +32,14 @@ variable "igw-name" {}
 #variable "nat-subnet_info" {}
 
 # -> EC2
-variable "data-most_recent" {}
-variable "data-owners" {}
-variable "data-filter_name" {}
-variable "data-filter_value" {}
+variable "instance-data-most_recent" {}
+variable "instance-data-owners" {}
+variable "instance-data-filter_name" {}
+variable "instance-data-filter_value" {}
 #variable "instance_info" {}
 variable "private-instance-associate_public_ip_address"{}
 variable "public-instance-associate_public_ip_address"{}
 
-variable "instance-sg"{}
-variable "instance-name"{}
+#variable "instance-sg"{}
+#variable "instance-name"{}
 

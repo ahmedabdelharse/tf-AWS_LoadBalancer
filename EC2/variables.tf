@@ -6,7 +6,7 @@ variable "data-filter_value" {}
 # variable "instance-subnet_id" {}
 variable "instance-type" {}
 # variable "instance-a_z" {}
-variable "instance-sg" {}
+variable "instance-sg" {type=any} #added to fix string required
 variable "instance-associate_public_ip_address" {}
 variable "instance-name" {}
 
