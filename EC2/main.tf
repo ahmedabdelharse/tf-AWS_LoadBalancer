@@ -25,9 +25,11 @@ resource "aws_instance" "ec2" {
   security_groups             = [var.instance-sg]
   associate_public_ip_address = var.instance-associate_public_ip_address
   tags = {
-    Name = var.instance-name
+    #Name = var.instance-name
+    Name = "${var.instance-name}-${count.index + 1}"
   }
-  
+  #key_name = aws_key_pair.ssh-key.key_name
+  key_name = var.key_name
   #user_data = file("filedestination") -> locate file.sh script
   #write script directrly here 
   #   user_data = <<E0F
@@ -37,6 +39,8 @@ resource "aws_instance" "ec2" {
 }
 
 # resource "aws_key_pair" "ssh-key" {
+#   count = 1
 #   key_name   = "ec2-key-pair"
-#   public_key = file(var.public_key_location) #locate ec2 public key, you can use ~/.ssh/id_rsa
+#   public_key = file("./ec2-key-pair.pub") #locate ec2 public key, you can use ~/.ssh/id_rsa
+#   #public_key = "AAAAB3NzaC1yc2EAAAADAQABAAABgQC6cA0nGv6UMBWiBizaZDC9xOYXxjjgsQlKMCwnKX93W6i6K93K3g3Ee2Z2hdvSmz2HwJWL7Wej6sWXJHv9ekFdLqYy"
 # }

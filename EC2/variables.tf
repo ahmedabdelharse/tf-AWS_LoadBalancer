@@ -24,3 +24,5 @@ variable "instance-subnet_ids" {
     description = "List of subnet IDs"
     type = list(string)
 }
+#variable "public_key_location" {}
+variable "key_name" {}

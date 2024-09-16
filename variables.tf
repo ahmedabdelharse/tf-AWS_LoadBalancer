@@ -10,17 +10,21 @@ variable "default-sg-name" {}
 #variable "default_sg-info" {}
 #variable "default_sg-ingress-info" {}
 #variable "default_sg-egress-info" {}
-variable "ingress-from_port" {}
-variable "ingress-protocol" {}
-variable "ingress-to_port" {}
-variable "ingress-cidr_block" {}
-variable "egress-from_port" {}
-variable "egress-protocol" {}
-variable "egress-to_port" {}
-variable "egress-cidr_block" {}
+variable "ingress_rules" {}
+variable "egress_rules" {}
+        # variable "ingress-from_port" {}
+        # variable "ingress-protocol" {}
+        # variable "ingress-to_port" {}
+        # variable "ingress-cidr_block" {}
+        # variable "egress-from_port" {}
+        # variable "egress-protocol" {}
+        # variable "egress-to_port" {}
+        # variable "egress-cidr_block" {}
 
 
 variable "default-rt-name" {}
+#variable "rt-routes" {}
+
 #variable "default_rt-info" {}
 variable "rt-route-cidr_block" {}
 #variable "route_pub-info" {}
@@ -43,3 +47,4 @@ variable "public-instance-associate_public_ip_address"{}
 #variable "instance-sg"{}
 #variable "instance-name"{}
 
+#variable "public_key_location" {}
