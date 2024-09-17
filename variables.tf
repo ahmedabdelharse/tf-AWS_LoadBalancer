@@ -48,3 +48,11 @@ variable "public-instance-associate_public_ip_address"{}
 #variable "instance-name"{}
 
 #variable "public_key_location" {}
+
+# $-> ALB
+variable "alb_name" {}
+variable "alb-target_group_name" {}
+variable "alb-target_group_port" {}
+variable "alb-target_group_protocol" {}
+variable "alb-listener_port" {}
+variable "alb-listener_protocol" {}

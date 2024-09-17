@@ -7,7 +7,10 @@ variable "data-filter_value" {}
 variable "instance-type" {}
 # variable "instance-a_z" {}
 variable "instance-sg" {type=any} #added to fix string required
-variable "instance-associate_public_ip_address" {}
+variable "instance-associate_public_ip_address" {
+    type    = bool
+    default = true
+}
 variable "instance-name" {}
 
 # variable "isntance-info" {
@@ -26,3 +29,29 @@ variable "instance-subnet_ids" {
 }
 #variable "public_key_location" {}
 variable "key_name" {}
+
+# variable "jump_server-user_data" {
+#     # type = string
+#     # default = <<EOF
+#     #     #!/bin/bash
+#     #     sudo apt update -y
+#     #     sudo apt install nginx -y
+#     #     sudo systemctl start nginx
+#     #     sudo systemctl enable nginx
+#     #     sudo service nginx restart
+#     #     echo 'Hello, World from Jump Server-${count.index + 1} $(hostname -f) without public IP' > /var/www/html/index.html
+#     # EOF 
+# }
+# variable "machine-user_data" {
+#     # type = string
+#     # default = <<EOF
+#     #     #!/bin/bash
+#     #     sudo apt update -y
+#     #     sudo apt install nginx -y
+#     #     sudo systemctl start nginx
+#     #     sudo systemctl enable nginx
+#     #     sudo service nginx restart
+#     #     echo 'Hello, World from Machine-${count.index + 1} $(hostname -f) without public IP' > /var/www/html/index.html
+#     # EOF 
+# }
+# #variable "user_data" {}

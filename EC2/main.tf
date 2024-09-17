@@ -32,11 +32,14 @@ resource "aws_instance" "ec2" {
   key_name = var.key_name
   #user_data = file("filedestination") -> locate file.sh script
   #write script directrly here 
-  #   user_data = <<E0F
-  #                     #!/bin/bash
+    # user_data = <<-EOF
+    #                   #!/bin/bash
 
-  #                 E0F
+    #               EOF
+
+  #user_data = var.instance-associate_public_ip_address ? var.jump_server-user_data : var.machine-user_data 
 }
+
 
 # resource "aws_key_pair" "ssh-key" {
 #   count = 1

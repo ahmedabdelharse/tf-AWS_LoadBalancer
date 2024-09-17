@@ -43,7 +43,7 @@ module "key_pair" {
   key_name   = "my-key-pair"
   public_key = file("./my-key-pair.pub") # Path to your public key file
 }
-module "private-EC2-M" {
+module "private-EC2-M" { #ec2 instances
     source = "./EC2"
     data-most_recent = var.instance-data-most_recent
     data-owners = var.instance-data-owners
@@ -55,11 +55,12 @@ module "private-EC2-M" {
     instance-sg = module.NETWORKING-M.sg-out.id
     instance-associate_public_ip_address = var.private-instance-associate_public_ip_address
     instance-name = "private-ec2"
+    #user_data = instance-associate_public_ip_address ? var.jump_server-user_data : var.machine-user_data
     key_name = module.key_pair.key_name
     #public_key_location = var.public_key_location
 }
-module "public-EC2-M" {
-    source = "./EC2"
+module "public-EC2-M" { #$$$$$$$$$$ jump server
+    source = "./EC2" 
     data-most_recent = var.instance-data-most_recent
     data-owners = var.instance-data-owners
     data-filter_name = var.instance-data-filter_name
@@ -72,4 +73,18 @@ module "public-EC2-M" {
     instance-name = "public-ec2"
     key_name = module.key_pair.key_name
     #public_key_location = var.public_key_location
+}
+module "ALB" {
+  source = "./ALB"
+  alb_name = var.alb_name
+  security_groups = [module.NETWORKING-M.sg-out.id]
+  subnets = module.SUBNET-M.public-subnet-ids-lb
+  #tags = #var.alb_tags
+  target_group_name = var.alb-target_group_name
+  target_group_port = var.alb-target_group_port
+  target_group_protocol = var.alb-target_group_protocol
+  target_group_vpc_id = module.VPC-M.vpc-out.id
+  ec2_instance_ids = module.private-EC2-M.ec2_ids
+  listener_port = var.alb-listener_port
+  listener_protocol = var.alb-listener_protocol
 }
